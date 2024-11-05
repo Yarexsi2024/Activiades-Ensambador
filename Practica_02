@@ -1,0 +1,62 @@
+section .data
+    ; Mensaje para imprimir el resultado
+    msg db 'El resultado de la suma es: ', 0
+
+section .bss
+    ; Espacio para almacenar el resultado de la suma
+    result resb 10
+
+section .text
+    global _start
+
+_start:
+    ; Cargar los dos números a sumar en los registros
+    mov eax, 5        ; Primer número (5)
+    mov ebx, 7        ; Segundo número (7)
+
+    ; Realizar la suma
+    add eax, ebx      ; eax = eax + ebx
+
+    ; Convertir el resultado a string (para imprimirlo)
+    ; (esto es un procedimiento básico y no óptimo para números grandes)
+    call int_to_str
+
+    ; Imprimir mensaje antes del número
+    mov eax, 4        ; Syscall para escribir (sys_write)
+    mov ebx, 1        ; Escribir en la salida estándar (stdout)
+    mov ecx, msg      ; Dirección del mensaje
+    mov edx, 25       ; Longitud del mensaje
+    int 0x80          ; Llamada al sistema (interrupt)
+
+    ; Imprimir el resultado de la suma
+    mov eax, 4        ; Syscall para escribir (sys_write)
+    mov ebx, 1        ; Escribir en la salida estándar (stdout)
+    mov ecx, result   ; Dirección del resultado en string
+    mov edx, 10       ; Longitud máxima del resultado
+    int 0x80          ; Llamada al sistema (interrupt)
+
+    ; Finalizar el programa
+    mov eax, 1        ; Syscall para salir (sys_exit)
+    xor ebx, ebx      ; Código de salida 0
+    int 0x80          ; Llamada al sistema (interrupt)
+
+; Función para convertir un entero a string
+int_to_str:
+    ; Asumimos que el valor a convertir está en eax
+    mov ecx, 10       ; Divisor para convertir el número (base 10)
+    mov edi, result   ; Dirección del buffer para el resultado
+
+    add edi, 10       ; Ir al final del buffer (porque se escribe de atrás hacia adelante)
+    mov byte [edi], 0 ; Null terminator (fin de cadena)
+
+convert_loop:
+    dec edi           ; Retrocedemos en el buffer
+    xor edx, edx      ; Limpiamos el registro edx para la división
+    div ecx           ; eax = eax / 10, edx = eax % 10
+    add dl, '0'       ; Convertir el valor en dígito a carácter ASCII
+    mov [edi], dl     ; Guardamos el carácter en el buffer
+
+    test eax, eax     ; Verificamos si el cociente es 0
+    jnz convert_loop  ; Si no es cero, continuamos dividiendo
+
+    ret
