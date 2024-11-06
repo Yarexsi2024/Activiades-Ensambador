@@ -1,6 +1,7 @@
 // Autor: Yarexsi Santiago
 // Fecha: 05/11/2024
 // Descripción: Programa en ensamblador que realiza la suma de dos números
+// link asciinema https://asciinema.org/a/687650
 
 // Programa equivalente en C#:
 /*
