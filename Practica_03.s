@@ -1,10 +1,25 @@
 // Autor: Yarexsi Santiago
 // Fecha: 05/11/2024
 // Descripción: Programa en ensamblador que realiza la resta de dos números
+// asciinema https://asciinema.org/a/687664
+//DEBUG https://asciinema.org/a/687671
 
-// Para este programa se utilizan los registros x0 y x1 para almacenar los valores 
-// de entrada (números a restar) y x2 para almacenar el resultado de la resta. 
-// El programa imprime el resultado en la salida estándar.
+// Equivalente en C#:
+/*
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int numero1 = 10;           // Primer número
+        int numero2 = 3;            // Segundo número
+        int resultado = numero1 - numero2;   // Realizar la resta
+
+        Console.WriteLine($"Resultado de la resta: {resultado}");
+    }
+}
+*/
 
 .section .data
 output_msg:   .asciz "Resultado de la resta: %d\n"
@@ -13,24 +28,22 @@ output_msg:   .asciz "Resultado de la resta: %d\n"
 .global _start
 
 _start:
-    // Entrada de datos - Asumimos que los valores están cargados en los registros x0 y x1.
-    // En este ejemplo, asignaremos valores directamente para propósitos de demostración.
-
+    // Entrada de datos - Asignamos valores directamente a los registros x0 y x1
     mov x0, #10                // Primer número: 10
     mov x1, #3                 // Segundo número: 3
 
     // Realizar la operación de resta
     sub x2, x0, x1             // x2 = x0 - x1 (Resta: 10 - 3 = 7)
 
-    // Preparar llamada al sistema para imprimir el resultado en consola
-    mov x0, x2                 // Pasar el resultado de la resta en x0 para mostrar
-    ldr x1, =output_msg        // Dirección del mensaje
-    mov x2, #0                 // Indicador de tipo de formato (0 para %d)
+    // Preparar la llamada a printf para mostrar el resultado en consola
+    adr x0, output_msg         // En x0, la dirección del mensaje de formato
+    mov x1, x2                 // En x1, el resultado de la resta para mostrar
 
-    // Llamada al sistema de impresión (en Linux)
-    bl printf                  // Imprimir resultado
+    // Llamada a printf para imprimir el resultado
+    bl printf
 
     // Finalizar el programa
-    mov x8, #93                // Llamada al sistema 'exit'
-    mov x0, #0                 // Código de salida 0
-    svc #0                     // Ejecutar llamada al sistema
+    mov x8, #93                // Código de salida para Linux
+    mov x0, #0                 // Estado de salida (0 = éxito)
+    svc #0                     // Llamada al sistema para salir
+
