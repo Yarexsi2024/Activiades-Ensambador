@@ -1,30 +1,31 @@
-// Fecha:11/11/25
+// Fecha: 11/11/25
 // Autor: Yarexsi Santiago
-// Descripción: Programa que ordena un arreglo usando el algoritmo de ordenamiento burbuja.
-
+// Descripción: Programa que ordena un arreglo usando el algoritmo de ordenamiento por selección.
 
 // Equivalente en C#:
 /*
 using System;
 
 class Program {
-    static void OrdenamientoBurbuja(int[] arreglo) {
+    static void OrdenamientoSeleccion(int[] arreglo) {
         int n = arreglo.Length;
         for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arreglo[j] > arreglo[j + 1]) {
-                    // Intercambiar arreglo[j] y arreglo[j + 1]
-                    int temp = arreglo[j];
-                    arreglo[j] = arreglo[j + 1];
-                    arreglo[j + 1] = temp;
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arreglo[j] < arreglo[minIndex]) {
+                    minIndex = j;
                 }
             }
+            // Intercambiar arreglo[i] y arreglo[minIndex]
+            int temp = arreglo[i];
+            arreglo[i] = arreglo[minIndex];
+            arreglo[minIndex] = temp;
         }
     }
 
     static void Main() {
         int[] arreglo = {5, 2, 9, 1, 5, 6};
-        OrdenamientoBurbuja(arreglo);
+        OrdenamientoSeleccion(arreglo);
         Console.WriteLine("Arreglo ordenado: " + string.Join(", ", arreglo));
     }
 }
@@ -46,33 +47,41 @@ _start:
     mov w2, 0                    // i = 0
 
 ciclo_externo:
-    sub w3, w1, w2               // w3 = n - i
-    cmp w3, 1                    // Si w3 <= 1, fin del ciclo externo
-    ble imprimir_arreglo
+    sub w3, w1, 1                // w3 = n - 1
+    cmp w2, w3                   // Comparar i con n - 1
+    bge imprimir_arreglo         // Si i >= n - 1, fin del ciclo externo
 
-    // Ciclo interno: for (int j = 0; j < n - i - 1; j++)
-    mov w4, 0                    // j = 0
+    mov w4, w2                   // minIndex = i
+
+    // Ciclo interno: for (int j = i + 1; j < n; j++)
+    add w5, w2, 1                // j = i + 1
 
 ciclo_interno:
-    sub w5, w3, 1                // w5 = n - i - 1
-    cmp w4, w5                   // Comparar j con n - i - 1
-    bge fin_ciclo_interno        // Si j >= n - i - 1, salir del ciclo interno
+    cmp w5, w1                   // Comparar j con n
+    bge fin_ciclo_interno        // Si j >= n, salir del ciclo interno
 
-    // Comparar arreglo[j] y arreglo[j + 1]
-    ldr w6, [x0, w4, LSL #2]     // Cargar arreglo[j] en w6
-    ldr w7, [x0, w4, LSL #2 + 4] // Cargar arreglo[j + 1] en w7
-    cmp w6, w7                   // Comparar arreglo[j] con arreglo[j + 1]
-    ble no_intercambiar          // Si arreglo[j] <= arreglo[j + 1], no intercambiar
+    ldr w6, [x0, w4, LSL #2]     // Cargar arreglo[minIndex] en w6
+    ldr w7, [x0, w5, LSL #2]     // Cargar arreglo[j] en w7
+    cmp w7, w6                   // Comparar arreglo[j] con arreglo[minIndex]
+    bge no_actualizar_min        // Si arreglo[j] >= arreglo[minIndex], no actualizar
 
-    // Intercambiar arreglo[j] y arreglo[j + 1]
-    str w7, [x0, w4, LSL #2]     // Guardar arreglo[j + 1] en arreglo[j]
-    str w6, [x0, w4, LSL #2 + 4] // Guardar arreglo[j] en arreglo[j + 1]
+    mov w4, w5                   // minIndex = j
 
-no_intercambiar:
-    add w4, w4, 1                // j++
+no_actualizar_min:
+    add w5, w5, 1                // j++
     b ciclo_interno              // Repetir el ciclo interno
 
 fin_ciclo_interno:
+    // Intercambiar arreglo[i] y arreglo[minIndex] si es necesario
+    cmp w2, w4                   // Comparar i con minIndex
+    beq no_intercambiar          // Si i == minIndex, no intercambiar
+
+    ldr w6, [x0, w2, LSL #2]     // Cargar arreglo[i] en w6 (temp)
+    ldr w7, [x0, w4, LSL #2]     // Cargar arreglo[minIndex] en w7
+    str w7, [x0, w2, LSL #2]     // Guardar arreglo[minIndex] en arreglo[i]
+    str w6, [x0, w4, LSL #2]     // Guardar arreglo[i] en arreglo[minIndex]
+
+no_intercambiar:
     add w2, w2, 1                // i++
     b ciclo_externo              // Repetir el ciclo externo
 
