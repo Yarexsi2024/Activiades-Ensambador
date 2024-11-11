@@ -1,5 +1,5 @@
 // Fecha: 11/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que realiza una búsqueda lineal en un arreglo.
 
 // Equivalente en C#:
