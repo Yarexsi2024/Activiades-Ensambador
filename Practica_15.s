@@ -1,5 +1,5 @@
 // Fecha: 11/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que realiza una búsqueda binaria recursiva en un arreglo ordenado.
 
 
