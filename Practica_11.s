@@ -1,6 +1,7 @@
 
 
 // Autor: Yarexsi Santiago De La Cruz
+// Fecha: 11/11/2024
 // Descripción: Programa que verifica si una cadena es un palíndromo.
 
 
