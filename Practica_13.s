@@ -1,5 +1,5 @@
 // Fecha: 11/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que recorre un arreglo y encuentra el valor mínimo.
 
 
