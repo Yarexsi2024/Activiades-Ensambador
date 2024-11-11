@@ -1,4 +1,4 @@
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Fecha: 11/11/24
 // Descripción: Programa que recorre un arreglo y encuentra el valor máximo.
 
