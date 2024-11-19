@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que realiza desplazamientos a la izquierda y derecha en un número.
 
 // Equivalente en C#:
