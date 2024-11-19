@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que realiza operaciones AND, OR y XOR a nivel de bits.
 
 // Equivalente en C#:
