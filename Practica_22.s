@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que convierte una cadena de caracteres en formato ASCII a un número entero.
 
 // Equivalente en C#:
