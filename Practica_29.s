@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que cuenta los bits activados (bits en 1) en un número.
 
 // Equivalente en C#:
