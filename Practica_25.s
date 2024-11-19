@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que cuenta las vocales y consonantes en una cadena.
 
 // Equivalente en C#:
