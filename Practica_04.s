@@ -1,6 +1,7 @@
 // Autor: Yarexsi Santiago
 // Fecha: 05/11/2024
 // Descripción: Programa en ensamblador que realiza la multiplicación de dos números
+//asciinema: https://asciinema.org/a/1o2A2LaXcYrJcPHgUwePhovyA
 
 // Equivalente en C#:
 
