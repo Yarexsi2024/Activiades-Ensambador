@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que transpone una matriz de tamaño fijo y la imprime.
 
 // Equivalente en C#:
