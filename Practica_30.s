@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que calcula el Máximo Común Divisor (MCD) de dos números usando el algoritmo de Euclides.
 
 // Equivalente en C#:
