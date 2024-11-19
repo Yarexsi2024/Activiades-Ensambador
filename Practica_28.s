@@ -1,5 +1,5 @@
 // Fecha: 12/11/25
-// Autor: Tu Nombre
+// Autor: Yarexsi Santiago
 // Descripción: Programa que manipula bits específicos de un número: establecer, borrar y alternar bits.
 
 // Equivalente en C#:
