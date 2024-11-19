@@ -2,6 +2,29 @@
 // Fecha: 05/11/2024
 // Descripción: Programa en ensamblador que realiza la multiplicación de dos números
 
+// Equivalente en C#:
+
+/*
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Entrada de datos
+        int num1 = 8;  // Primer número
+        int num2 = 6;  // Segundo número
+
+        // Realizar la multiplicación
+        int resultado = num1 * num2;
+
+        // Imprimir el resultado
+        Console.WriteLine("Resultado de la multiplicación: " + resultado);
+    }
+}
+*/
+
+
 // Este programa utiliza los registros x0 y x1 para almacenar los valores de entrada
 // (números a multiplicar) y x2 para almacenar el resultado de la multiplicación. 
 // El programa imprime el resultado en la salida estándar.
@@ -33,26 +56,3 @@ _start:
     mov x8, #93               // Llamada al sistema 'exit'
     mov x0, #0                // Código de salida 0
     svc #0                    // Ejecutar llamada al sistema
-
-
-// Equivalente en C#:
-
-/*
-using System;
-
-class Program
-{
-    static void Main()
-    {
-        // Entrada de datos
-        int num1 = 8;  // Primer número
-        int num2 = 6;  // Segundo número
-
-        // Realizar la multiplicación
-        int resultado = num1 * num2;
-
-        // Imprimir el resultado
-        Console.WriteLine("Resultado de la multiplicación: " + resultado);
-    }
-}
-*/
